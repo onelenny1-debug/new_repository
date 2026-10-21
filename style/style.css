@@ -1,21 +1,302 @@
-.box {
-  width: 200px;
-  height: 200px;
-  background-color: red;
-  border-radius: 8px;
+@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap");
+/*맨위에넣기*/
+* {
+  margin: 0;
+  padding: 0;
 }
-.bg-img {
-  display: block;
-  width: 1600px;
+.container {
+  position: absolute;
+  width: 1512px;
   height: 900px;
+  display: block;
+  background-color: black;
   object-fit: cover;
   object-position: 0% 50%;
+  z-index: -2; /* zindex 를 사진요소랑 히트박스별로 설정하여 다른 요소에 의해 가려져 클릭이 먹지않는것을 방지함*/
 }
-.cat-img {
-  display: block;
-  width: 200px;
-  height: 200px;
+body {
+  overflow: hidden;
+}
+.slide {
   position: absolute;
-  top: 250px;
-  left: 200px;
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s cubic-bezier(0.72, -0.05, 0.86, 0.61);
+}
+.slide-left {
+  left: 0;
+  z-index: 4;
+}
+.slide-right {
+  right: 0;
+  z-index: 4;
+}
+.container.split .slide-left {
+  transform: translateX(-77%) rotate(-3deg);
+}
+
+.container.split .slide-right {
+  transform: translateX(76%) rotate(3deg);
+}
+/*폐기
+@keyframes slide-left {
+  0% {
+    left: 0;
+  }
+  100% {
+    transform: translateX(-30%);
+  }
+}
+@keyframes slide-right {
+  0% {
+    right: 0;
+  }
+  100% {
+    transform: translateX(30%);
+  }
+}
+
+/*.slide-left:active
+  animation-name: slide-left;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+  animation-timing-function: linear;*/
+
+/*.slide-right:active
+  animation-name: slide-right;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  animation-timing-function: linear;*/
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  opacity: 0.5;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  animation: fadein 12s ease-in;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.backgroundstill1 {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  opacity: 0.8;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -2;
+  animation: moveandback 12s steps(1, start)
+    /*steps (1, start)써서 배경이 애니메이션처럼 계속 움직여 fade in out 타이밍이랑 안맞는걸 방지*/
+    alternate infinite;
+}
+.backgroundstill2 {
+  position: absolute;
+  width: 51%;
+  height: 100%;
+  right: 0;
+  object-fit: cover;
+  opacity: 0.8;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -2;
+  animation: moveandback2 12s steps(1, start) alternate infinite;
+}
+@keyframes moveandback {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes moveandback2 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.frame {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 105%;
+  object-fit: contain;
+  z-index: 2;
+}
+.main {
+  position: absolute;
+  top: 38.8%;
+  left: 50.2%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 66%;
+  object-fit: contain;
+  z-index: 2;
+  opacity: 0%;
+  transition: opacity 2s cubic-bezier(0.72, -0.05, 0.86, 0.61);
+  pointer-events: none;
+}
+
+.pen {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  left: 33%;
+  top: 78%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  z-index: 3;
+  transition: transform 3s cubic-bezier(0.72, -0.05, 0.86, 0.61);
+}
+.title {
+  position: absolute;
+  width: 45%;
+  height: 28%;
+  left: 50%;
+  top: 86.5%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  transition: opacity 3s cubic-bezier(0.72, -0.05, 0.86, 0.61);
+  transition: clip-path
+    /*왼쪽부분만 남아있다가 끝나면 오른쪽이 들어나서 스르륵 열리는 애니메이션 만드는 용도, 그냥 opacitty만 하면 fade in 되는것 처럼만 보임*/
+    3s cubic-bezier(0.72, -0.05, 0.86, 0.61);
+  pointer-events: none;
+}
+@keyframes opacityfadein {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.container.move .title {
+  animation: opacityfadein 3s cubic-bezier(0.72, -0.05, 0.86, 0.61);
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.container.fadein .main {
+  opacity: 100%;
+}
+.small {
+  opacity: 1;
+  z-index: 4;
+  pointer-events: none;
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+.small1,
+.small2 {
+  position: absolute;
+  z-index: 3;
+  width: 17.9%;
+  height: 30%;
+  left: 32.8%;
+  top: 12%;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+.container.move .pen {
+  transform: translate(-50%, -50%) translateX(170%);
+}
+.frame2 {
+  position: absolute;
+  top: 50%;
+  left: 49.75%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 120%;
+  object-fit: contain;
+  opacity: 0.95;
+  z-index: -1;
+}
+
+.small1.active,
+.small2.active {
+  opacity: 1;
+}
+/*더이상 뭐가 어디있는지 기억이 안나네요*/
+.nothing-you-could-do-regular {
+  font-family: "Nothing You Could Do", cursive;
+  font-weight: 800;
+  font-style: normal;
+  transition: opacity 2s ease-in-out;
+  position: absolute;
+  opacity: 0;
+}
+
+.text1 {
+  font-family: "Nothing You Could Do", cursive;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 22px;
+  left: 32.5%;
+  top: 43%;
+  position: absolute;
+  z-index: 3;
+  rotate: 4.5deg;
+  opacity: 0;
+  color: black;
+}
+.text2 {
+  font-family: "Nothing You Could Do", cursive;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 21px;
+  left: 32%;
+  top: 43%;
+  position: absolute;
+  z-index: 3;
+  rotate: 4.5deg;
+  opacity: 0;
+  color: black;
+}
+.nothing-you-could-do-regular.active {
+  opacity: 1;
 }

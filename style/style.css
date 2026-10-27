@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap");
 /*맨위에넣기*/
+/*nothingyoucando폰트*/
 * {
   margin: 0;
   padding: 0;
@@ -12,17 +13,17 @@
   background-color: black;
   object-fit: cover;
   object-position: 0% 50%;
-  z-index: -2; /* zindex 를 사진요소랑 히트박스별로 설정하여 다른 요소에 의해 가려져 클릭이 먹지않는것을 방지함*/
+  z-index: -2; /* zindex 를 사진요소랑 히트박스별로 설정하여 다른 요소에 의해 가려져 클릭이 먹지않는것을 방지*/
 }
 body {
-  overflow: hidden;
+  overflow: hidden; /*바디 삐져나가는거 방지*/
 }
 .slide {
   position: absolute;
   width: 60%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.5s cubic-bezier(0.72, -0.05, 0.86, 0.61);
+  transition: transform 1.5s cubic-bezier(0.72, -0.05, 0.86, 0.61); /*슬라이드 트렌지션*/
 }
 .slide-left {
   left: 0;
@@ -35,7 +36,7 @@ body {
 .container.split .slide-left {
   transform: translateX(-77%) rotate(-3deg);
 }
-
+/*슬라이드 트렌지션*/
 .container.split .slide-right {
   transform: translateX(76%) rotate(3deg);
 }
@@ -74,7 +75,7 @@ body {
   animation-direction: alternate;
   animation-timing-function: linear;*/
 
-.background {
+.background/*가리는배경*/ {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -88,7 +89,7 @@ body {
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-.backgroundstill1 {
+.backgroundstill1/*왼 배경*/ {
   position: absolute;
   width: 50%;
   height: 100%;
@@ -102,7 +103,7 @@ body {
     /*steps (1, start)써서 배경이 애니메이션처럼 계속 움직여 fade in out 타이밍이랑 안맞는걸 방지*/
     alternate infinite;
 }
-.backgroundstill2 {
+.backgroundstill2/*오 배경*/ {
   position: absolute;
   width: 51%;
   height: 100%;
@@ -114,7 +115,7 @@ body {
   z-index: -2;
   animation: moveandback2 12s steps(1, start) alternate infinite;
 }
-@keyframes moveandback {
+@keyframes /*배경 애니메이션*/ moveandback {
   0% {
     transform: translateX(0);
   }
@@ -125,7 +126,7 @@ body {
     transform: translateX(0);
   }
 }
-@keyframes moveandback2 {
+@keyframes /*배경 애니메이션*/moveandback2 {
   0% {
     transform: translateX(0);
   }
@@ -136,7 +137,7 @@ body {
     transform: translateX(0);
   }
 }
-@keyframes fadein {
+@keyframes /*배경 애니메이션*/ fadein {
   0% {
     opacity: 0;
   }
@@ -198,7 +199,7 @@ body {
     3s cubic-bezier(0.72, -0.05, 0.86, 0.61);
   pointer-events: none;
 }
-@keyframes opacityfadein {
+@keyframes /*제목 애니메이션*/ opacityfadein {
   0% {
     opacity: 0;
   }
@@ -220,10 +221,10 @@ body {
   opacity: 1;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-.container.fadein .main {
+.container.fadein .main /*큰사진 애니메이션*/ {
   opacity: 100%;
 }
-.small {
+.small /*작은사진 컨테이너*/ {
   opacity: 1;
   z-index: 4;
   pointer-events: none;
@@ -232,7 +233,7 @@ body {
   height: 50%;
 }
 .small1,
-.small2 {
+.small2 /*작은사진 */ {
   position: absolute;
   z-index: 3;
   width: 17.9%;
@@ -242,7 +243,7 @@ body {
   opacity: 0;
   transition: opacity 2s ease-in-out;
 }
-.container.move .pen {
+.container.move .pen /* 펜 애니메이션 */ {
   transform: translate(-50%, -50%) translateX(170%);
 }
 .frame2 {
@@ -258,11 +259,11 @@ body {
 }
 
 .small1.active,
-.small2.active {
+.small2.active /*작은사진 애니메이션*/ {
   opacity: 1;
 }
-/*더이상 뭐가 어디있는지 기억이 안나네요*/
-.nothing-you-could-do-regular {
+
+.nothing-you-could-do-regular /* 작은 사진 밑 텍스트 */ {
   font-family: "Nothing You Could Do", cursive;
   font-weight: 800;
   font-style: normal;
@@ -271,7 +272,7 @@ body {
   opacity: 0;
 }
 
-.text1 {
+.text1 /* 작은 사진 밑 텍스트 */ {
   font-family: "Nothing You Could Do", cursive;
   font-weight: 800;
   font-style: normal;
@@ -284,7 +285,7 @@ body {
   opacity: 0;
   color: black;
 }
-.text2 {
+.text2 /* 작은 사진 밑 텍스트 */ {
   font-family: "Nothing You Could Do", cursive;
   font-weight: 800;
   font-style: normal;
@@ -297,6 +298,6 @@ body {
   opacity: 0;
   color: black;
 }
-.nothing-you-could-do-regular.active {
+.nothing-you-could-do-regular.active /* 작은 사진 밑 텍스트 애니메이션*/ {
   opacity: 1;
 }
